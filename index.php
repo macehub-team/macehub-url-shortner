@@ -33,11 +33,11 @@ class Shortner{
 
 			}
 			catch(Exception $e){
-				die("<b>Error :</b> Can't Connect to database");
+				$this->show_error("<b>Error :</b> Can't Connect to database, or PHP version does't support");
 			}
 		}
 		else
-			die("<b>Error :</b> env.php not configured.");
+			$this->show_error("<b>Error :</b> env.php not configured.");
 	}
 	private function home_page(){
 		if(!isset($_SESSION['user'])){
@@ -108,12 +108,16 @@ class Shortner{
 		include "login.template.php";
 	}
 	private function show_dashboard($success = null,$error = null){
+		try{
 		  $stmt = $this->db->prepare("SELECT * FROM urls ORDER BY id DESC");
 		  $stmt->execute();
 
-		  // set the resulting array to associative
 		  $urls = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 	      include "dashboard.template.php";
+		}
+		catch(Exception $e){
+			$this->show_error("<b>Error</b>: Can't find the Table, or PHP version does't support");
+		}
 	}
 	private function show_error($error = null){
 		include "error.template.php";
