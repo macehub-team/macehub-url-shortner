@@ -16,13 +16,23 @@
 
     <!-- Custom styles for this template -->
     <link href="sticky-footer.css" rel="stylesheet">
+
+    <style type="text/css">
+      form#logout{
+        float: right;
+        display: inline-block;
+      }
+    </style>
   </head>
 
   <body>
 
     <!-- Begin page content -->
     <main role="main" class="container">
-      <h1 class="mt-5">Macehub URL Shortner</h1>
+      <h1 class="mt-5">
+        Macehub URL Shortner
+        <form id="logout" action="/" method="post"><input type="submit" name="logout" value="Logout" class="btn btn-danger"></form>
+      </h1>
       <div class="row">
       	<div class="col-md-12">
 		  <hr class="my-4">
